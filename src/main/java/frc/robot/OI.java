@@ -7,6 +7,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ToggleShifterState;
+
+import java.awt.*;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -19,6 +25,10 @@ public class OI {
   // number it is.
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
+    public Joystick leftStick = new Joystick(RobotMap.leftJoystick);
+    public Joystick rightStick = new Joystick(RobotMap.rightJoystick);
+
+    public JoystickButton rightStickShifter = new JoystickButton(rightStick, RobotMap.rightJoystickShifterButton);
 
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
@@ -27,7 +37,9 @@ public class OI {
   //// TRIGGERING COMMANDS WITH BUTTONS
   // Once you have a button, it's trivial to bind it to a button in one of
   // three ways:
-
+    public OI () {
+        rightStickShifter.whenPressed(new ToggleShifterState());
+    }
   // Start the command when the button is pressed and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenPressed(new ExampleCommand());

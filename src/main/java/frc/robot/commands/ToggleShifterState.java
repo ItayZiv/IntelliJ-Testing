@@ -3,9 +3,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DriveWithJoystick extends Command {
+public class ToggleShifterState extends Command {
 
-    public DriveWithJoystick() {
+    public ToggleShifterState() {
         requires(Robot.m_driveTrain);
     }
 
@@ -14,22 +14,25 @@ public class DriveWithJoystick extends Command {
     protected void initialize() {
     }
 
+    @Override
+    public synchronized void start() {
+        Robot.m_driveTrain.toggleShifterState();
+    }
+
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.m_driveTrain.tankDrive(Robot.m_oi.leftStick.getY(), Robot.m_oi.rightStick.getY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.m_driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
