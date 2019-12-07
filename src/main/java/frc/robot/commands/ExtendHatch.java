@@ -1,16 +1,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.Hatch;
 
 public class ExtendHatch extends Command {
 
     public ExtendHatch() {
-
+        requires(Robot.m_hatch);
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        Robot.m_hatch.setHatchExtensionState(true);
     }
 
     // Called repeatedly when this Command is scheduled to run

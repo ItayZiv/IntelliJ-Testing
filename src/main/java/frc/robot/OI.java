@@ -7,7 +7,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Controller;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ToggleShifterState;
 
@@ -37,9 +39,7 @@ public class OI {
   //// TRIGGERING COMMANDS WITH BUTTONS
   // Once you have a button, it's trivial to bind it to a button in one of
   // three ways:
-    public OI () {
-        rightStickShifter.whenPressed(new ToggleShifterState());
-    }
+
   // Start the command when the button is pressed and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenPressed(new ExampleCommand());
@@ -51,4 +51,9 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+  public XboxController F310Gamepad = new XboxController(RobotMap.F310Gamepad);
+
+  public OI () {
+    rightStickShifter.whenPressed(new ToggleShifterState());
+  }
 }

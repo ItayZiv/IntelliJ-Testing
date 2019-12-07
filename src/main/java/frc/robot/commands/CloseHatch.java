@@ -1,16 +1,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class CloseHatch extends Command {
 
     public CloseHatch() {
-
+        requires(Robot.m_hatch);
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        Robot.m_hatch.setHatchState(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -21,7 +23,7 @@ public class CloseHatch extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 //
     // Called once after isFinished returns true

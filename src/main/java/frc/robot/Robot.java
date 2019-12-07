@@ -7,12 +7,18 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.CloseHatch;
+import frc.robot.commands.ExtendHatch;
+import frc.robot.commands.OpenHatch;
+import frc.robot.commands.RetractHatch;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Hatch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +29,7 @@ import frc.robot.subsystems.DriveTrain;
  */
 public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain = new DriveTrain();
+  public static Hatch m_hatch = new Hatch();
 
   public static OI m_oi;
 
@@ -120,6 +127,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
+    if (m_oi.F310Gamepad.getPOV() == 0)
+      new ExtendHatch();
+    else if (m_oi.F310Gamepad.getPOV() == 180)
+      new RetractHatch();
+
+    if (m_oi.F310Gamepad.getBumper(GenericHID.Hand.kRight))
+      new OpenHatch();
+    else if (m_oi.F310Gamepad.getBumper(GenericHID.Hand.kLeft))
+      new CloseHatch();
   }
 
   /**
