@@ -17,6 +17,7 @@ import frc.robot.commands.CloseHatch;
 import frc.robot.commands.ExtendHatch;
 import frc.robot.commands.OpenHatch;
 import frc.robot.commands.RetractHatch;
+import frc.robot.subsystems.Cargo;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hatch;
 
@@ -30,6 +31,7 @@ import frc.robot.subsystems.Hatch;
 public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain;
   public static Hatch m_hatch;
+  public static Cargo m_cargo;
 
   public static OI m_oi;
 
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
 
     m_driveTrain = new DriveTrain();
     m_hatch = new Hatch();
+    m_cargo = new Cargo();
   }
 
 

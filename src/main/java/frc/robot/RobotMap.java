@@ -27,6 +27,9 @@ public class RobotMap {
    public static int rearLeftTalonSRX = 3;
    public static int rearRightTalonSRX = 4;
 
+   public static int armTalonSRX = 5;
+   public static int intakeTalonSRX = 6;
+
    //PCM
    public static int leftShifter = 0;
    public static int rightShifter = 1;

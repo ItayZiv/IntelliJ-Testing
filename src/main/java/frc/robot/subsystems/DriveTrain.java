@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveWithJoystick;
 import frc.robot.states.ShifterState;
 
 public class DriveTrain extends Subsystem {
@@ -49,7 +50,7 @@ public class DriveTrain extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-
+        setDefaultCommand(new DriveWithJoystick());
     }
 
     public void tankDrive(double leftPower, double rightPower) {
