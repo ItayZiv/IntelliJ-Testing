@@ -15,13 +15,8 @@ public class DriveTrain extends Subsystem {
     private final WPI_TalonSRX m_leftSlaveCIM;
     private final WPI_TalonSRX m_rightMasterCIM;
     private final WPI_TalonSRX m_rightSlaveCIM;
-//    private final SpeedControllerGroup m_leftCIMs;
-//    private final SpeedControllerGroup m_rightCIMs;
-//    private final DifferentialDrive m_drive;
     private final Solenoid m_leftShifter;
     private final Solenoid m_rightShifter;
-//    private ShifterState m_leftShifterState;
-//    private ShifterState m_rightShifterState;
 
     public DriveTrain() {
         m_leftMasterCIM = new WPI_TalonSRX(RobotMap.frontLeftTalonSRX);
@@ -32,8 +27,6 @@ public class DriveTrain extends Subsystem {
         m_leftShifter = new Solenoid(RobotMap.leftShifter);
         m_rightShifter = new Solenoid(RobotMap.rightShifter);
 
-//        m_leftShifterState = ShifterState.High;
-//        m_rightShifterState = ShifterState.High;
         m_leftMasterCIM.configFactoryDefault();
         m_rightMasterCIM.configFactoryDefault();
         m_rightMasterCIM.setInverted(true);
@@ -46,8 +39,6 @@ public class DriveTrain extends Subsystem {
         addChild(m_rightSlaveCIM);
         addChild(m_leftShifter);
         addChild(m_rightShifter);
-//        addChild(m_leftShifterState);
-//        addChild(m_rightShifterState);
     }
 
     public void configSlave(WPI_TalonSRX slave, WPI_TalonSRX master) {

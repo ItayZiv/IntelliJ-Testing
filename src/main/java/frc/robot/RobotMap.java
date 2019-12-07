@@ -19,6 +19,7 @@ public class RobotMap {
    public static int rightJoystick = 1;
    public static int rightJoystickShifterButton = 0;
    public static int F310Gamepad = 2;
+
   // CAN Devices
     //Drivetrain
    public static int frontLeftTalonSRX = 1;
@@ -32,9 +33,4 @@ public class RobotMap {
    public static int hatchExtender1 = 2;
    public static int hatchExtender2 = 3;
    public static int hatchGrabber = 4;
-
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
 }
