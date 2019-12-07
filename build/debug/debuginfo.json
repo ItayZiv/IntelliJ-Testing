@@ -1,9 +1,0 @@
-[
-  {
-    "artifact": "frcJava (in project IntelliJ-Testing)",
-    "target": "roborio",
-    "debugfile": "frcJava_roborio.debugconfig",
-    "project": "IntelliJ-Testing",
-    "language": "java"
-  }
-]
