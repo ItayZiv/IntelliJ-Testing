@@ -13,11 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.CloseHatch;
-import frc.robot.commands.ExtendHatch;
-import frc.robot.commands.OpenHatch;
-import frc.robot.commands.RetractHatch;
+import frc.robot.commands.*;
 import frc.robot.subsystems.Cargo;
+import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hatch;
 
@@ -32,6 +30,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain;
   public static Hatch m_hatch;
   public static Cargo m_cargo;
+  public static Climb m_climb;
 
   public static OI m_oi;
 
@@ -46,6 +45,7 @@ public class Robot extends TimedRobot {
     m_driveTrain = new DriveTrain();
     m_hatch = new Hatch();
     m_cargo = new Cargo();
+    m_climb = new Climb();
   }
 
 
@@ -65,6 +65,13 @@ public class Robot extends TimedRobot {
       new OpenHatch();
     else if (m_oi.F310Gamepad.getBumper(GenericHID.Hand.kLeft))
       new CloseHatch();
+
+    if (m_oi.F310Gamepad.getStartButton()) {
+      if (m_oi.F310Gamepad.getYButtonPressed())
+        new ToggleFrontClimb();
+      else if (m_oi.F310Gamepad.getBButtonPressed())
+        new ToggleRearClimb();
+    }
   }
 
   /**

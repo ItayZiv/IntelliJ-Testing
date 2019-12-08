@@ -36,4 +36,8 @@ public class RobotMap {
    public static int hatchExtender1 = 2;
    public static int hatchExtender2 = 3;
    public static int hatchGrabber = 4;
+   public static int frontLeftClimb = 5;
+   public static int frontRightClimb = 6;
+   public static int rearLeftClimb = 7;
+   public static int rearRightClimb = 8;
 }
