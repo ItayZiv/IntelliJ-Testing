@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Global;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.states.ShifterState;
@@ -53,9 +54,13 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new DriveWithJoystick());
     }
 
+    public void tankDrive(double Power) {
+        tankDrive(Power, Power);
+    }
+
     public void tankDrive(double leftPower, double rightPower) {
-        m_leftMasterCIM.set(leftPower);
-        m_rightMasterCIM.set(rightPower);
+        m_leftMasterCIM.set(leftPower * Global.robotMaxSpeed);
+        m_rightMasterCIM.set(rightPower * Global.robotMaxSpeed);
     }
 
     public void stop() {
@@ -64,13 +69,17 @@ public class DriveTrain extends Subsystem {
     }
 
     public void setShifterState(ShifterState targetState) {
-        if (targetState == ShifterState.High) {
-            m_leftShifter.set(false);
-            m_rightShifter.set(false);
-        }
-        else if (targetState == ShifterState.Low) {
-            m_leftShifter.set(true);
-            m_rightShifter.set(true);
+        switch (targetState) {
+            case High:
+                m_leftShifter.set(false);
+                m_rightShifter.set(false);
+                break;
+            case Low:
+                m_leftShifter.set(true);
+                m_rightShifter.set(true);
+                break;
+            default:
+                m_rightShifter.set(m_leftShifter.get());
         }
     }
 

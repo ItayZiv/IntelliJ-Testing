@@ -9,11 +9,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
+import frc.robot.states.RunState;
 import frc.robot.subsystems.Cargo;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
@@ -34,18 +34,33 @@ public class Robot extends TimedRobot {
 
   public static OI m_oi;
 
+  public SendableChooser<RunState> m_runStateChooser;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
-
     m_driveTrain = new DriveTrain();
     m_hatch = new Hatch();
     m_cargo = new Cargo();
     m_climb = new Climb();
+
+    SmartDashboard.putData(m_driveTrain);
+    SmartDashboard.putData(m_hatch);
+    SmartDashboard.putData(m_cargo);
+    SmartDashboard.putData(m_climb);
+
+    m_oi = new OI();
+
+    m_runStateChooser = new SendableChooser<RunState>();
+    m_runStateChooser.setDefaultOption("Normal", RunState.Normal);
+    m_runStateChooser.addOption("Safe Mode", RunState.SafeMode);
+    m_runStateChooser.addOption("Guest Mode", RunState.GuestMode);
+    SmartDashboard.putData("Run mode", m_runStateChooser);
+    Global.runState = m_runStateChooser.getSelected();
+    setRunVariables();
   }
 
 
@@ -79,5 +94,29 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  public void setRunVariables() {
+    setRunVariables(Global.runState);
+  }
+
+  public void setRunVariables(RunState runState) {
+    switch (runState) {
+      case Normal:
+        Global.driveSpeed = 1;
+        Global.climbSolenoidEnabled = true;
+        break;
+      case SafeMode:
+        Global.driveSpeed = 0.8;
+        Global.climbSolenoidEnabled = false;
+        break;
+      case GuestMode:
+        Global.driveSpeed = 0.4;
+        Global.climbSolenoidEnabled = false;
+        break;
+      default:
+        Global.driveSpeed = 0.1;
+        Global.climbSolenoidEnabled = false;
+    }
   }
 }
