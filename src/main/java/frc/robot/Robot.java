@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -80,19 +79,19 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    if (m_oi.F310Gamepad.getPOV() == 0)
+    if (m_oi.Xbox360Controller.getPOV() == 0)
       Scheduler.getInstance().add(new ExtendHatch());
-    else if (m_oi.F310Gamepad.getPOV() == 180)
+    else if (m_oi.Xbox360Controller.getPOV() == 180)
       Scheduler.getInstance().add(new RetractHatch());
 
-    if (m_oi.F310Gamepad.getBumper(GenericHID.Hand.kRight))
+    if (m_oi.Xbox360Controller.getBumper(GenericHID.Hand.kRight))
       Scheduler.getInstance().add(new OpenHatch());
-    else if (m_oi.F310Gamepad.getBumper(GenericHID.Hand.kLeft))
+    else if (m_oi.Xbox360Controller.getBumper(GenericHID.Hand.kLeft))
       Scheduler.getInstance().add(new CloseHatch());
 
-    if (m_oi.F310Gamepad.getBButtonPressed())
+    if (m_oi.Xbox360Controller.getBButtonPressed())
       Scheduler.getInstance().add(new ToggleFrontClimb());
-    else if (m_oi.F310Gamepad.getYButtonPressed())
+    else if (m_oi.Xbox360Controller.getYButtonPressed())
       Scheduler.getInstance().add(new ToggleRearClimb());
   }
 

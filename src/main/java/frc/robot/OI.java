@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Controller;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -22,10 +21,9 @@ import java.awt.*;
 public class OI {
 //    public Joystick leftStick = new Joystick(RobotMap.leftJoystick);
     public Joystick rightStick = new Joystick(RobotMap.rightJoystick);
-
     public JoystickButton rightStickShifter = new JoystickButton(rightStick, RobotMap.rightJoystickShifterButton);
 
-    public XboxController F310Gamepad = new XboxController(RobotMap.F310Gamepad);
+    public XboxController Xbox360Controller = new XboxController(RobotMap.F310Gamepad);
 
     public OI () {
       rightStickShifter.whenPressed(new ToggleShifterState());

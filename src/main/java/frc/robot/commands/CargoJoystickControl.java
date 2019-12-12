@@ -12,8 +12,8 @@ public class CargoJoystickControl extends Command {
 
     @Override
     protected void execute() {
-        Robot.m_cargo.moveArm(Robot.m_oi.F310Gamepad.getY(GenericHID.Hand.kRight));
-        Robot.m_cargo.controlIntake(Robot.m_oi.F310Gamepad.getY(GenericHID.Hand.kLeft));
+        Robot.m_cargo.moveArm(Robot.m_oi.Xbox360Controller.getY(GenericHID.Hand.kRight));
+        Robot.m_cargo.controlIntake(Robot.m_oi.Xbox360Controller.getY(GenericHID.Hand.kLeft));
     }
 
     @Override
