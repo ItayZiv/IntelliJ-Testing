@@ -36,6 +36,9 @@ public class Robot extends TimedRobot {
 
   public SendableChooser<RunState> m_runStateChooser;
 
+  public static double robotMaxSpeed = 1;
+  public static RunState runState = RunState.Normal;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -59,7 +62,7 @@ public class Robot extends TimedRobot {
     m_runStateChooser.addOption("Safe Mode", RunState.SafeMode);
     m_runStateChooser.addOption("Guest Mode", RunState.GuestMode);
     SmartDashboard.putData("Run mode", m_runStateChooser);
-    Global.runState = m_runStateChooser.getSelected();
+    Robot.runState = m_runStateChooser.getSelected();
     setRunVariables();
   }
 
@@ -97,26 +100,30 @@ public class Robot extends TimedRobot {
   }
 
   public void setRunVariables() {
-    setRunVariables(Global.runState);
+    setRunVariables(Robot.runState);
   }
 
   public void setRunVariables(RunState runState) {
     switch (runState) {
       case Normal:
-        Global.driveSpeed = 1;
-        Global.climbSolenoidEnabled = true;
+        m_driveTrain.driveSpeed = 1;
+        m_climb.climbEnabled = false; //Temporary, needs to be true
+        m_hatch.hatchEnabled = true;
         break;
       case SafeMode:
-        Global.driveSpeed = 0.8;
-        Global.climbSolenoidEnabled = false;
+        m_driveTrain.driveSpeed = 0.8;
+        m_climb.climbEnabled = false;
+        m_hatch.hatchEnabled = false;
         break;
       case GuestMode:
-        Global.driveSpeed = 0.4;
-        Global.climbSolenoidEnabled = false;
+        m_driveTrain.driveSpeed = 0.4;
+        m_climb.climbEnabled = false;
+        m_hatch.hatchEnabled = true;
         break;
       default:
-        Global.driveSpeed = 0.1;
-        Global.climbSolenoidEnabled = false;
+        m_driveTrain.driveSpeed = 0.1;
+        m_climb.climbEnabled = false;
+        m_hatch.hatchEnabled = false;
     }
   }
 }

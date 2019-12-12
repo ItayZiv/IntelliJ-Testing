@@ -3,10 +3,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.Global;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.states.ShifterState;
@@ -19,6 +17,8 @@ public class DriveTrain extends Subsystem {
     private final WPI_TalonSRX m_rightSlaveCIM;
     private final Solenoid m_leftShifter;
     private final Solenoid m_rightShifter;
+
+    public double driveSpeed = 1;
 
     public DriveTrain() {
         m_leftMasterCIM = new WPI_TalonSRX(RobotMap.frontLeftTalonSRX);
@@ -59,8 +59,8 @@ public class DriveTrain extends Subsystem {
     }
 
     public void tankDrive(double leftPower, double rightPower) {
-        m_leftMasterCIM.set(leftPower * Global.robotMaxSpeed);
-        m_rightMasterCIM.set(rightPower * Global.robotMaxSpeed);
+        m_leftMasterCIM.set(leftPower * Robot.robotMaxSpeed);
+        m_rightMasterCIM.set(rightPower * Robot.robotMaxSpeed);
     }
 
     public void stop() {

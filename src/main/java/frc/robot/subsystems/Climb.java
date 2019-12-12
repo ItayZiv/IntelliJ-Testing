@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Global;
 import frc.robot.RobotMap;
 import frc.robot.states.Side;
 
@@ -12,6 +11,8 @@ public class Climb extends Subsystem {
     private final Solenoid m_frontRightClimb;
     private final Solenoid m_rearLeftClimb;
     private final Solenoid m_rearRightClimb;
+
+    public boolean climbEnabled = false;
 
     public Climb() {
         m_frontLeftClimb = new Solenoid(RobotMap.frontLeftClimb);
@@ -31,7 +32,7 @@ public class Climb extends Subsystem {
     }
 
     public void set(Side side, boolean target) {
-        if (Global.climbSolenoidEnabled) {
+        if (climbEnabled) {
             switch (side) {
                 case Front:
                     m_frontLeftClimb.set(target);
@@ -44,12 +45,6 @@ public class Climb extends Subsystem {
                 default:
                     break;
             }
-        }
-        else {
-            m_frontLeftClimb.set(false);
-            m_frontRightClimb.set(false);
-            m_rearLeftClimb.set(false);
-            m_rearRightClimb.set(false);
         }
     }
 

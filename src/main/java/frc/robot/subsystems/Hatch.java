@@ -2,16 +2,15 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Global;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.states.RunState;
 
 public class Hatch extends Subsystem {
 
     public final Solenoid hatchExtender1;
     public final Solenoid hatchExtender2;
     public final Solenoid hatchGrabber;
+
+    public boolean hatchEnabled = true;
 
     public Hatch() {
         hatchExtender1 = new Solenoid(RobotMap.hatchExtender1);
@@ -29,14 +28,14 @@ public class Hatch extends Subsystem {
     }
 
     public void setHatchExtensionState (boolean target) {
-        if (!(Global.runState == RunState.SafeMode)) {
+        if (hatchEnabled) {
             hatchExtender1.set(target);
             hatchExtender1.set(target);
         }
     }
 
     public void setHatchState (boolean target) {
-        if (!(Global.runState == RunState.SafeMode)) {
+        if (hatchEnabled) {
             hatchGrabber.set(target);
         }
     }

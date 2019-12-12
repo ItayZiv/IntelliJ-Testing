@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Global;
 import frc.robot.Robot;
 
 public class DriveWithJoystick extends Command {
@@ -12,7 +11,7 @@ public class DriveWithJoystick extends Command {
 
     @Override
     protected void execute() {
-        Robot.m_driveTrain.tankDrive(Robot.m_oi.leftStick.getY() * Global.driveSpeed, Robot.m_oi.rightStick.getY() * Global.driveSpeed);
+        Robot.m_driveTrain.tankDrive(Robot.m_oi.leftStick.getY() * Robot.m_driveTrain.driveSpeed, Robot.m_oi.rightStick.getY() * Robot.m_driveTrain.driveSpeed);
     }
 
     @Override
