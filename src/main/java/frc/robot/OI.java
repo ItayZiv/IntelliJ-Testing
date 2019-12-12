@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ToggleShifterState;
 
-import java.awt.*;
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -23,7 +21,7 @@ public class OI {
     public Joystick rightStick = new Joystick(RobotMap.rightJoystick);
     public JoystickButton rightStickShifter = new JoystickButton(rightStick, RobotMap.rightJoystickShifterButton);
 
-    public XboxController Xbox360Controller = new XboxController(RobotMap.F310Gamepad);
+    public XboxController Xbox360Controller = new XboxController(RobotMap.Xbox360Joystick);
 
     public OI () {
       rightStickShifter.whenPressed(new ToggleShifterState());

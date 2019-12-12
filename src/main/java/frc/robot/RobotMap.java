@@ -18,7 +18,7 @@ public class RobotMap {
 //   public static int leftJoystick = 0;
    public static int rightJoystick = 1;
    public static int rightJoystickShifterButton = 1;
-   public static int F310Gamepad = 2;
+   public static int Xbox360Joystick = 2;
 
   // CAN Devices
     //Drivetrain
