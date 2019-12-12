@@ -9,7 +9,13 @@ public class ToggleShifterState extends Command {
         requires(Robot.m_driveTrain);
     }
 
-    // Called just before this Command runs the first time
+//    @Override
+//    public synchronized void start() {
+//        super.start();
+//        Robot.m_driveTrain.toggleShifterState();
+//    }
+
+//     Called just before this Command runs the first time
     @Override
     protected void initialize() {
         Robot.m_driveTrain.toggleShifterState();

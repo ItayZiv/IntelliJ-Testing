@@ -8,12 +8,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.states.RunState;
+import frc.robot.states.Side;
 import frc.robot.subsystems.Cargo;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
@@ -35,6 +37,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   public SendableChooser<RunState> m_runStateChooser;
+  public SendableChooser<Side> test;
 
   public static double robotMaxSpeed = 1;
   public static RunState runState = RunState.Normal;
@@ -64,8 +67,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Run mode", m_runStateChooser);
     Robot.runState = m_runStateChooser.getSelected();
     setRunVariables();
-  }
 
+    test = new SendableChooser<Side>();
+    test.setDefaultOption("a", Side.Front);
+    test.addOption("b", Side.Back);
+  }
 
   /**
    * This function is called periodically during operator control.
@@ -75,21 +81,19 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
 
     if (m_oi.F310Gamepad.getPOV() == 0)
-      new ExtendHatch();
+      Scheduler.getInstance().add(new ExtendHatch());
     else if (m_oi.F310Gamepad.getPOV() == 180)
-      new RetractHatch();
+      Scheduler.getInstance().add(new RetractHatch());
 
     if (m_oi.F310Gamepad.getBumper(GenericHID.Hand.kRight))
-      new OpenHatch();
+      Scheduler.getInstance().add(new OpenHatch());
     else if (m_oi.F310Gamepad.getBumper(GenericHID.Hand.kLeft))
-      new CloseHatch();
+      Scheduler.getInstance().add(new CloseHatch());
 
-    if (m_oi.F310Gamepad.getStartButton()) {
-      if (m_oi.F310Gamepad.getYButtonPressed())
-        new ToggleFrontClimb();
-      else if (m_oi.F310Gamepad.getBButtonPressed())
-        new ToggleRearClimb();
-    }
+    if (m_oi.F310Gamepad.getBButtonPressed())
+      Scheduler.getInstance().add(new ToggleFrontClimb());
+    else if (m_oi.F310Gamepad.getYButtonPressed())
+      Scheduler.getInstance().add(new ToggleRearClimb());
   }
 
   /**
@@ -107,7 +111,7 @@ public class Robot extends TimedRobot {
     switch (runState) {
       case Normal:
         m_driveTrain.driveSpeed = 1;
-        m_climb.climbEnabled = false; //Temporary, needs to be true
+        m_climb.climbEnabled = true;
         m_hatch.hatchEnabled = true;
         break;
       case SafeMode:

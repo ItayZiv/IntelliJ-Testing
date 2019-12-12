@@ -15,29 +15,25 @@ package frc.robot;
  */
 public class RobotMap {
   // OI
-   public static int leftJoystick = 0;
+//   public static int leftJoystick = 0;
    public static int rightJoystick = 1;
-   public static int rightJoystickShifterButton = 0;
+   public static int rightJoystickShifterButton = 1;
    public static int F310Gamepad = 2;
 
   // CAN Devices
     //Drivetrain
-   public static int frontLeftTalonSRX = 1;
-   public static int frontRightTalonSRX = 2;
-   public static int rearLeftTalonSRX = 3;
-   public static int rearRightTalonSRX = 4;
+   public static int frontLeftTalonSRX = 0;
+   public static int frontRightTalonSRX = 1;
+   public static int rearLeftTalonSRX = 2;
+   public static int rearRightTalonSRX = 3;
 
-   public static int armTalonSRX = 5;
-   public static int intakeTalonSRX = 6;
+   public static int armTalonSRX = 4;
+   public static int intakeTalonSRX = 5;
 
    //PCM
-   public static int leftShifter = 0;
-   public static int rightShifter = 1;
-   public static int hatchExtender1 = 2;
-   public static int hatchExtender2 = 3;
-   public static int hatchGrabber = 4;
-   public static int frontLeftClimb = 5;
-   public static int frontRightClimb = 6;
-   public static int rearLeftClimb = 7;
-   public static int rearRightClimb = 8;
+   public static int shifter = 0;
+   public static int hatchGrabber = 1;
+   public static int hatchExtender = 2;
+   public static int frontClimb = 3;
+   public static int rearClimb = 4;;
 }

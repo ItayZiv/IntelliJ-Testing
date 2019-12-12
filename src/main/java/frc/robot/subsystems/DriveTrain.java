@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithJoystick;
@@ -15,8 +16,7 @@ public class DriveTrain extends Subsystem {
     private final WPI_TalonSRX m_leftSlaveCIM;
     private final WPI_TalonSRX m_rightMasterCIM;
     private final WPI_TalonSRX m_rightSlaveCIM;
-    private final Solenoid m_leftShifter;
-    private final Solenoid m_rightShifter;
+    private final Solenoid m_shifter;
 
     public double driveSpeed = 1;
 
@@ -26,21 +26,19 @@ public class DriveTrain extends Subsystem {
         m_rightMasterCIM = new WPI_TalonSRX(RobotMap.frontRightTalonSRX);
         m_rightSlaveCIM = new WPI_TalonSRX(RobotMap.rearRightTalonSRX);
 
-        m_leftShifter = new Solenoid(RobotMap.leftShifter);
-        m_rightShifter = new Solenoid(RobotMap.rightShifter);
+        m_shifter = new Solenoid(RobotMap.shifter);
 
         m_leftMasterCIM.configFactoryDefault();
         m_rightMasterCIM.configFactoryDefault();
         m_rightMasterCIM.setInverted(true);
         configSlave(m_leftSlaveCIM, m_leftMasterCIM);
-        configSlave(m_leftSlaveCIM, m_leftMasterCIM);
+        configSlave(m_rightSlaveCIM, m_rightMasterCIM);
 
         addChild(m_leftMasterCIM);
         addChild(m_leftSlaveCIM);
         addChild(m_rightMasterCIM);
         addChild(m_rightSlaveCIM);
-        addChild(m_leftShifter);
-        addChild(m_rightShifter);
+        addChild(m_shifter);
     }
 
     public void configSlave(WPI_TalonSRX slave, WPI_TalonSRX master) {
@@ -63,6 +61,29 @@ public class DriveTrain extends Subsystem {
         m_rightMasterCIM.set(rightPower * Robot.robotMaxSpeed);
     }
 
+    public void arcadeDrive(double speed, double rotation) {
+        double maxInput = Math.copySign(Math.max(Math.abs(speed), Math.abs(rotation)), speed);
+        if (speed >= 0.0) {
+            // First quadrant, else second quadrant
+            if (rotation >= 0.0) {
+                m_leftMasterCIM.set(maxInput);
+                m_rightMasterCIM.set(speed - rotation);
+            } else {
+                m_leftMasterCIM.set(speed + rotation);
+                m_rightMasterCIM.set(maxInput);
+            }
+        } else {
+            // Third quadrant, else fourth quadrant
+            if (rotation >= 0.0) {
+                m_leftMasterCIM.set(speed + rotation);
+                m_rightMasterCIM.set(maxInput);
+            } else {
+                m_leftMasterCIM.set(maxInput);
+                m_rightMasterCIM.set(speed - rotation);
+            }
+        }
+    }
+
     public void stop() {
         m_leftMasterCIM.set(0);
         m_rightMasterCIM.set(0);
@@ -71,20 +92,18 @@ public class DriveTrain extends Subsystem {
     public void setShifterState(ShifterState targetState) {
         switch (targetState) {
             case High:
-                m_leftShifter.set(false);
-                m_rightShifter.set(false);
+                m_shifter.set(false);
                 break;
             case Low:
-                m_leftShifter.set(true);
-                m_rightShifter.set(true);
+                m_shifter.set(true);
                 break;
             default:
-                m_rightShifter.set(m_leftShifter.get());
+//                m_shifter.set(m_shifter.get());
+                break;
         }
     }
 
     public void toggleShifterState() {
-        m_leftShifter.set(!m_leftShifter.get());
-        m_rightShifter.set(!m_rightShifter.get());
+        m_shifter.set(!m_shifter.get());
     }
 }
