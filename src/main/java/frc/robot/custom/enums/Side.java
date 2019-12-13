@@ -1,4 +1,4 @@
-package frc.robot.states;
+package frc.robot.custom.enums;
 
 public enum Side {
     Front,
