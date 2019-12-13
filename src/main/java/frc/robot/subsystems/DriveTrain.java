@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithJoystick;
-import frc.robot.states.ShifterState;
+import frc.robot.custom.enums.ShifterState;
 
 public class DriveTrain extends Subsystem {
 

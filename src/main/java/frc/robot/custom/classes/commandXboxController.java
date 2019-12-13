@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.custom.classes;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

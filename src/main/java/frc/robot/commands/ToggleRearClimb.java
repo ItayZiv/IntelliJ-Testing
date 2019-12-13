@@ -2,7 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.states.Side;
+import frc.robot.custom.enums.Side;
 
 public class ToggleRearClimb extends Command {
 
