@@ -8,9 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.ToggleShifterState;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,9 +20,16 @@ public class OI {
     public Joystick rightStick = new Joystick(RobotMap.rightJoystick);
     public JoystickButton rightStickShifter = new JoystickButton(rightStick, RobotMap.rightJoystickShifterButton);
 
-    public XboxController Xbox360Controller = new XboxController(RobotMap.Xbox360Joystick);
+    public commandXboxController Xbox360Controller = new commandXboxController(RobotMap.Xbox360Joystick);
 
     public OI () {
       rightStickShifter.whenPressed(new ToggleShifterState());
+
+      Xbox360Controller.rightBumper.whenPressed(new OpenHatch());
+      Xbox360Controller.leftBumper.whenPressed(new CloseHatch());
+      Xbox360Controller.B.whenPressed(new ToggleFrontClimb());
+      Xbox360Controller.Y.whenPressed(new ToggleRearClimb());
+      Xbox360Controller.dpad_up.whenPressed(new ExtendHatch());
+      Xbox360Controller.dpad_down.whenPressed(new RetractHatch());
     }
 }

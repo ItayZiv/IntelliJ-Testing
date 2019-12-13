@@ -78,21 +78,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-
-    if (m_oi.Xbox360Controller.getPOV() == 0)
-      Scheduler.getInstance().add(new ExtendHatch());
-    else if (m_oi.Xbox360Controller.getPOV() == 180)
-      Scheduler.getInstance().add(new RetractHatch());
-
-    if (m_oi.Xbox360Controller.getBumper(GenericHID.Hand.kRight))
-      Scheduler.getInstance().add(new OpenHatch());
-    else if (m_oi.Xbox360Controller.getBumper(GenericHID.Hand.kLeft))
-      Scheduler.getInstance().add(new CloseHatch());
-
-    if (m_oi.Xbox360Controller.getBButtonPressed())
-      Scheduler.getInstance().add(new ToggleFrontClimb());
-    else if (m_oi.Xbox360Controller.getYButtonPressed())
-      Scheduler.getInstance().add(new ToggleRearClimb());
   }
 
   /**
