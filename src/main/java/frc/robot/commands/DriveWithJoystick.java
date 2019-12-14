@@ -11,8 +11,8 @@ public class DriveWithJoystick extends Command {
 
     @Override
     protected void execute() {
-        Robot.m_driveTrain.arcadeDrive(Robot.m_oi.rightStick.getY(), Robot.m_oi.rightStick.getX());
-//        Robot.m_driveTrain.tankDrive(Robot.m_oi.leftStick.getY() * Robot.m_driveTrain.driveSpeed, Robot.m_oi.rightStick.getY() * Robot.m_driveTrain.driveSpeed);
+//        Robot.m_driveTrain.arcadeDrive(Robot.m_oi.rightStick.getY(), Robot.m_oi.rightStick.getX());
+        Robot.m_driveTrain.tankDrive(Robot.m_oi.leftStick.getY() * Robot.m_driveTrain.driveSpeed, Robot.m_oi.rightStick.getY() * Robot.m_driveTrain.driveSpeed);
     }
 
     @Override

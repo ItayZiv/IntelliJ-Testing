@@ -17,7 +17,7 @@ import frc.robot.custom.classes.commandXboxController;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-//    public Joystick leftStick = new Joystick(RobotMap.leftJoystick);
+    public Joystick leftStick = new Joystick(RobotMap.leftJoystick);
     public Joystick rightStick = new Joystick(RobotMap.rightJoystick);
     public JoystickButton rightStickShifter = new JoystickButton(rightStick, RobotMap.rightJoystickShifterButton);
 

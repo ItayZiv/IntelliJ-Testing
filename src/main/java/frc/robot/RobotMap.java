@@ -15,20 +15,20 @@ package frc.robot;
  */
 public class RobotMap {
   // OI
-//   public static int leftJoystick = 0;
-   public static int rightJoystick = 1;
-   public static int rightJoystickShifterButton = 1;
-   public static int Xbox360Joystick = 2;
+   public static int leftJoystick = 1;
+   public static int rightJoystick = 0;
+ public static int rightJoystickShifterButton = 1;
+ public static int Xbox360Joystick = 2;
 
-  // CAN Devices
-    //Drivetrain
-   public static int frontLeftTalonSRX = 0;
-   public static int frontRightTalonSRX = 1;
-   public static int rearLeftTalonSRX = 2;
-   public static int rearRightTalonSRX = 3;
+ // CAN Devices
+ //Drivetrain
+ public static int frontLeftTalonSRX = 0;
+ public static int frontRightTalonSRX = 2;
+ public static int rearLeftTalonSRX = 1;
+ public static int rearRightTalonSRX = 3;
 
-   public static int armTalonSRX = 4;
-   public static int intakeTalonSRX = 5;
+ public static int armTalonSRX = 4;
+ public static int intakeTalonSRX = 5;
 
    //PCM
    public static int shifter = 0;

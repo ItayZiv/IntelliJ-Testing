@@ -31,6 +31,8 @@ public class DriveTrain extends Subsystem {
         m_leftSlaveCIM.configFactoryDefault();
         m_rightMasterCIM.configFactoryDefault();
         m_rightSlaveCIM.configFactoryDefault();
+        m_leftMasterCIM.setInverted(true);
+        m_leftSlaveCIM.setInverted(true);
 
         addChild(m_leftMasterCIM);
         addChild(m_leftSlaveCIM);
@@ -55,10 +57,10 @@ public class DriveTrain extends Subsystem {
     }
 
     public void tankDrive(double leftPower, double rightPower) {
-        m_leftMasterCIM.set(leftPower * Robot.robotMaxSpeed);
-        m_leftSlaveCIM.set(leftPower * Robot.robotMaxSpeed);
-        m_rightMasterCIM.set(rightPower * Robot.robotMaxSpeed);
-        m_rightSlaveCIM.set(leftPower * Robot.robotMaxSpeed);
+        m_leftMasterCIM.set(leftPower);//* Robot.robotMaxSpeed);
+        m_leftSlaveCIM.set(leftPower);// * Robot.robotMaxSpeed);
+        m_rightMasterCIM.set(rightPower);// * Robot.robotMaxSpeed);
+        m_rightSlaveCIM.set(rightPower);// * Robot.robotMaxSpeed);
     }
 
     public void arcadeDrive(double speed, double rotation) {
