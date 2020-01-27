@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run curl to codecov
-      run: bash<(curl -s https://codecov.io/bash) -t c4e13a83-e8dd-4509-860c-9932160da3c8
+      run: curl -s https://codecov.io/bash -t c4e13a83-e8dd-4509-860c-9932160da3c8
